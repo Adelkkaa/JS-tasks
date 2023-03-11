@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #myDIV {
+      height: 250px;
+      width: 250px;
+      overflow: auto;
+    }
+
+    #content {
+      height: 800px;
+      width: 2000px;
+      background-color: coral;
+    }
+  </style>
+
+  <body>
+    <p>
+      Scroll the content below to display the number of pixels it is scrolled.
+    </p>
+
+    <div id="myDIV" onscroll="myFunction()">
+      <div id="content">Scroll me!</div>
+    </div>
+
+    <p id="demo"></p>
+
+    <script>
+      function myFunction() {
+        const element = document.getElementById("myDIV");
+        let y = element.scrollHeight - element.scrollTop - element.clientHeight;
+        document.getElementById("demo").innerHTML =
+          "Vertically: " + y.toFixed();
+      }
+    </script>
+  </body>
+</html>

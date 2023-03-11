@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      let data = {
+        Рыбы: {
+          форель: {},
+          лосось: {},
+        },
+
+        Деревья: {
+          Огромные: {
+            секвойя: {},
+            дуб: {},
+          },
+          Цветковые: {
+            яблоня: {},
+            магнолия: {},
+            hello: {},
+          },
+        },
+      };
+
+      function createTree(container, data) {
+        let ul = document.createElement("ul");
+        let ulLength;
+        for (const key in data) {
+          if (JSON.stringify(data[key]) !== "{}") {
+            ulLength = countTreeChild(data[key]);
+            ul.insertAdjacentHTML("beforeend", `<li>${key}[${ulLength}]</li>`);
+            createTree(ul.lastChild, data[key]);
+          } else {
+            ul.insertAdjacentHTML("beforeend", `<li>${key}</li>`);
+          }
+        }
+        container.append(ul);
+      }
+
+      function countTreeChild(data) {
+        let length = Object.keys(data).length;
+        for (let key in data) {
+          if (JSON.stringify(data[key]) !== "{}") {
+            length += countTreeChild(data[key]);
+          }
+        }
+        return length;
+      }
+
+      let container = document.getElementById("container");
+      createTree(container, data);
+    </script>
+  </body>
+</html>

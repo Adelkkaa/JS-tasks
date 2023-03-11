@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="clock">
+      <span class="hour" style="color: red">hh</span>:<span
+        class="min"
+        style="color: green"
+        >mm</span
+      >:<span class="sec" style="color: blue">ss</span>
+    </div>
+    <button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <script>
+      const start = document.querySelector(".start");
+      const stop = document.querySelector(".stop");
+      function ticTac() {
+        const clock = document.querySelector(".clock");
+        let date = new Date();
+        let hours = date.getHours();
+        if (hours < 10) hours = "0" + hours;
+        clock.children[0].innerHTML = hours;
+
+        let minutes = date.getMinutes();
+        if (minutes < 10) minutes = "0" + minutes;
+        clock.children[1].innerHTML = minutes;
+
+        let seconds = date.getSeconds();
+        if (seconds < 10) seconds = "0" + seconds;
+        clock.children[2].innerHTML = seconds;
+      }
+      let timerId;
+
+      function clockStart() {
+        timerId = setInterval(ticTac, 1000);
+        ticTac();
+      }
+
+      function clockStop() {
+        clearInterval(timerId);
+        timerId = null;
+      }
+
+      start.addEventListener("click", clockStart);
+      stop.addEventListener("click", clockStop);
+    </script>
+  </body>
+</html>

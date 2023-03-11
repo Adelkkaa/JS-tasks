@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    width: 390px;
+    overflow: hidden;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 0px;
+    padding: 0;
+}
+
+button {
+    flex-shrink: 1;
+}
